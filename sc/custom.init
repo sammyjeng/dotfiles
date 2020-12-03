@@ -1,0 +1,49 @@
+" alias vv='nvim -u ~/sc/custom.init'
+nnoremap , :
+let mapleader = "\<Space>"
+syntax on
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set bg=dark
+set ai
+set nu rnu
+set hlsearch
+set ruler
+set smartcase
+set clipboard+=unnamedplus
+set termguicolors
+set showmode
+set modeline
+set title
+highlight Comment ctermfg=yellow
+highlight showmode ctermfg=black
+set mouse=a
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+noremap <Leader>w :call TrimWhitespace()<CR>
+
+call plug#begin('~/.local/share/nvim/site/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/gruvbox-material'
+call plug#end()
+
+colorscheme gruvbox-material
+set t_Co=256
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'jellybeans'
+
+
+fun! Openfile()
+  :Vexplore
+endfun
+noremap <Leader>n :call Openfile()<CR>

@@ -1,5 +1,5 @@
 " https://raw.githubusercontent.com/sammyjeng/dotfiles/master/nvim/.config/nvim/init.vim
-" Nvim config --> .config/nvim/init.vim
+"peru  Nvim config --> .config/nvim/init.vim
 
 " Vim-plug initialization
 " let vim_plug_just_installed = 0
@@ -40,7 +40,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
+Plug 'sainnhe/gruvbox-material'
 Plug 'davidhalter/jedi-vim'
 Plug 'mhinz/vim-signify'
 Plug 'fisadev/dragvisuals.vim'
@@ -84,23 +84,16 @@ set nowrap
 set nu rnu
 set scrolloff=3
 
-highlight OverLength ctermfg=red
+highlight OverLength ctermfg=green
 highlight colorcolumn  ctermbg=gray ctermfg=white
 match OverLength /\%81v.\+/
-
-
+set background=dark
+colorscheme gruvbox-material
 " ---------------------- gruvbox colorscheme ------------------------
-let g:gruvbox_contrast_hard = 'hard'
+" let g:gruvbox_contrast_hard = 'hard'
+" set background=dark
 " let g:gruvbox_contrast_light = 'light'
-colorscheme gruvbox
-
-" ----------------------- Nord theme --------------------------------
-"let g:nord_cursor_line_number_background = 1
-"let g:nord_uniform_diff_background = 0
-"let g:nord_bold = 0
-"let g:nord_italic = 1
-"let g:nord_italic_comments = 1
-"colorscheme nord
+" colorscheme gruvbox
 
 " TOhtml
 let g:html_number_lines = 0
@@ -170,11 +163,11 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 " ------------------Airline config[Poweline fonts]-------------------
 
-set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set t_Co=256
-let g:airline_powerline_fonts =1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'gruvbox_material'
 " let g:airline_theme='cool'
 
 " supertab settings

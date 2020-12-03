@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# tmux -u a ; [[ $? = 1 ]] && tmux -u new -s $(date +%a-%H)
 
 # If not running interactively, don't do anything
 case $- in
@@ -82,12 +83,17 @@ bakcyn='\[\e[46m\]'   # Cyan
 bakwht='\[\e[47m\]'   # White
 txtrst='\[\e[0m\]'    # Text Reset
 
-if [ "${UID}" -eq "0" ]; then 
-  nameC="${txtred}" 
+if [ "${UID}" -eq "0" ]; then
+  nameC="${txtred}"
 fi
 
 #damn cool prompt
-export PS1="${txtgrn}\$([[ \$? != 0 ]] && echo \"\[\033[0;31m\][\342\234\227\[\033[0;31m\]]\")[\u${txtgrn}@${txtred}\h]${bldblu}[\w]${bldred}▶${txtwht} "
+export PS1="${txtgrn}\$([[ \$? != 0 ]] && echo \"\[\033[0;31m\][\342\234\227\[\033[0;31m\]]\")[\u${txtgrn}@${txtred}\h]${bldblu}[\w]${bldred}:${txtwht} "
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

@@ -83,6 +83,8 @@ set colorcolumn=80
 set nowrap
 set nu rnu
 set scrolloff=3
+vmap < <gv
+vmap > >gv
 
 highlight OverLength ctermfg=green
 highlight colorcolumn  ctermbg=gray ctermfg=white

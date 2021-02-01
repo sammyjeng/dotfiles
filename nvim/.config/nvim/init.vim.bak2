@@ -39,7 +39,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ajh17/spacegray.vim'
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'davidhalter/jedi-vim'
 Plug 'mhinz/vim-signify'
 Plug 'fisadev/dragvisuals.vim'
@@ -89,10 +90,12 @@ highlight OverLength ctermfg=green
 highlight colorcolumn  ctermbg=gray ctermfg=white
 match OverLength /\%81v.\+/
 set background=dark
-colorscheme spacegray
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
-
+colorscheme gruvbox-material
+" ---------------------- gruvbox colorscheme ------------------------
+" let g:gruvbox_contrast_hard = 'hard'
+" set background=dark
+" let g:gruvbox_contrast_light = 'light'
+" colorscheme gruvbox
 
 " TOhtml
 let g:html_number_lines = 0
@@ -166,7 +169,7 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 set t_Co=256
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'gruvbox_material'
 " let g:airline_theme='cool'
 
 " supertab settings

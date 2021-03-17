@@ -1,5 +1,5 @@
 " https://raw.githubusercontent.com/sammyjeng/dotfiles/master/nvim/.config/nvim/init.vim
-"peru  Nvim config --> .config/nvim/init.vim
+"Nvim config --> .config/nvim/init.vim
 
 " Vim-plug initialization
 " let vim_plug_just_installed = 0
@@ -20,15 +20,6 @@
 " ==================== Active plugins ===============================
 call plug#begin('~/.local/share/nvim/site/plugged')
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/deoplete-clangx'
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ervandew/supertab'
@@ -56,8 +47,10 @@ filetype indent on
 " --------------Python syntax check----------------------------------
 let g:neomake_python_enabled_makers = ['pylint']
 call neomake#configure#automake('nrwi', 500)
+
 " vim-sneak
 let g:sneak#label = 1
+
 " map leader key to <Space>
 let mapleader =  "\<Space>"
 " map , :
@@ -93,7 +86,6 @@ colorscheme spacegray
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 1
 
-
 " TOhtml
 let g:html_number_lines = 0
 let g:html_use_encoding = "UTF-8"
@@ -104,6 +96,7 @@ nnoremap <leader>k :tabnext<CR>
 nnoremap <leader>j :tabprev<CR>
 nnoremap <leader>h :tabfirst<CR>
 nnoremap <leader>l :tablast<CR>
+
 " line wrapping thingy
 nnoremap <leader>u :% norm zo<CR>
 nnoremap <leader>U :% norm zc<CR>
@@ -111,15 +104,9 @@ nnoremap <leader>U :% norm zc<CR>
 " Add spellchecks for md files
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
+
 " autocomplete window hide
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Change clang options
-call deoplete#custom#var('clangx', 'default_c_options', '')
-call deoplete#custom#var('clangx', 'default_cpp_options', '')
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#ignore_sources = {}
-" let g:deoplete#ignore_sources._ = ['buffer', 'around']
 
 " Comment this line to enable autocompletion preview window
 " Disabled by default because preview makes the window flicker
@@ -153,14 +140,11 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 
 " --------------------------- Jedi-vim ------------------------------
-
 let g:jedi#goto_command = ',d'
 let g:jedi#usages_command = ',o'
 let g:jedi#goto_assignments_command = ',a'
 nmap ,D :tab split<CR>:call jedi#goto()<CR>
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-
-" ------------------Airline config[Poweline fonts]-------------------
 
 " set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set t_Co=256
@@ -186,7 +170,6 @@ let g:instant_markdown_port = 8888
 let g:instant_markdown_python = 1
 
 " -------------Func to remove traling whiteSpaces--------------------
-
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -219,3 +202,8 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 map <Leader>G :Goyo <CR>
+
+fun! Based()
+  :%! base64 -d
+endfun
+noremap <Leader>n :call Based()<CR>

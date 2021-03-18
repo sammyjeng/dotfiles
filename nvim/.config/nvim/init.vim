@@ -38,9 +38,12 @@ Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-sneak'
 " colorschemes
 Plug 'owickstrom/vim-colors-paramount'
+Plug 'whatyouhide/vim-gotham'
 Plug 'fxn/vim-monochrome'
 Plug 'lurst/austere.vim'
 Plug 'andreypopp/vim-colors-plain'
+Plug 'ajh17/spacegray.vim'
+Plug 'wesgibbs/vim-irblack'
 call plug#end()
 
 " allow plugins by file type (required for plugins!)
@@ -205,6 +208,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 map <Leader>G :Goyo <CR>
 
 fun! Based()
-  :%! base64 -d
+  :%! xargs base64 -d
 endfun
 noremap <Leader>n :call Based()<CR>

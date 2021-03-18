@@ -31,19 +31,15 @@ endfun
 noremap <Leader>w :call TrimWhitespace()<CR>
 
 call plug#begin('~/.local/share/nvim/site/plugged')
-Plug 'ajh17/spacegray.vim'
+Plug 'andreypopp/vim-colors-plain'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
-colorscheme spacegray
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 0
-
+colorscheme plain 
 
 set t_Co=256
 let g:airline_powerline_fonts = 0

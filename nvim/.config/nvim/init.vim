@@ -1,5 +1,5 @@
 " https://raw.githubusercontent.com/sammyjeng/dotfiles/master/nvim/.config/nvim/init.vim
-"Nvim config --> .config/nvim/init.vim
+" Nvim config --> .config/nvim/init.vim
 
 " Vim-plug initialization
 " let vim_plug_just_installed = 0
@@ -30,14 +30,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ajh17/spacegray.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'mhinz/vim-signify'
 Plug 'fisadev/dragvisuals.vim'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-sneak'
-
+" colorschemes
+Plug 'owickstrom/vim-colors-paramount'
+Plug 'fxn/vim-monochrome'
+Plug 'lurst/austere.vim'
+Plug 'andreypopp/vim-colors-plain'
 call plug#end()
 
 " allow plugins by file type (required for plugins!)
@@ -82,9 +85,7 @@ highlight OverLength ctermfg=green
 highlight colorcolumn  ctermbg=gray ctermfg=white
 match OverLength /\%81v.\+/
 set background=dark
-colorscheme spacegray
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
+colorscheme plain
 
 " TOhtml
 let g:html_number_lines = 0

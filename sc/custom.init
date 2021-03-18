@@ -1,11 +1,11 @@
-" alias vv='nvim -u ~/sc/custom.init'
-nnoremap , :
+noremap , :
 let mapleader = "\<Space>"
 syntax on
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set bg=dark
+set noswapfile
 set ai
 set nu rnu
 set hlsearch
@@ -19,6 +19,10 @@ set title
 highlight Comment ctermfg=yellow
 highlight showmode ctermfg=black
 set mouse=a
+
+vmap < <gv
+vmap > >gv
+
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -27,22 +31,24 @@ endfun
 noremap <Leader>w :call TrimWhitespace()<CR>
 
 call plug#begin('~/.local/share/nvim/site/plugged')
-
+Plug 'ajh17/spacegray.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
-Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
-colorscheme gruvbox-material
+colorscheme spacegray
+let g:spacegray_use_italics = 1
+let g:spacegray_low_contrast = 0
+
+
 set t_Co=256
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'jellybeans'
-
 
 fun! Openfile()
   :Vexplore

@@ -1,5 +1,6 @@
 autoload -U colors && colors
 setopt prompt_subst
+#setopt correctall
 
 function git_branch_name()
 {
@@ -12,9 +13,10 @@ function git_branch_name()
   fi
 }
 
-PS1="[%{$fg[green]%}%n%{$reset_color%}]:%{$fg[blue]%}[%~]%{$reset_color%}%{$fg[red]%}$(git_branch_name)Ш %{$reset_color%}"
-#PS1="%{$fg[red][%n]%}%{$reset_color%}:%{$fg[blue]%}[%~]%{$reset_color%}%{$fg[red]%}Ш %{$reset_color%}"
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M%{$fg[red]%}]%{$reset_color%}:%{$fg[magenta]%}[%~]/>%{$reset_color%}%b "
+# damn cool prompt init mate?
+PS1='%B%F{cyan}.%b%F{cyan}-%B%F{red}$(git_branch_name)%B%F{black}(%B%F{green}%~%B%F{black})%b%F{cyan}%B%F{black}(%b%F{cyan}%n%B%F{cyan}@%b%F{cyan}%m%B%F{black})%b%F{cyan}
+%}%B%F{cyan}\`-%b%F{cyan}-%b%F{red}❯%B%F{white}%B%F{white}%(!.#.❯) %b%f%k'
+
 PS2="%{$fg[red]%} >> %{$reset_color%}"
 #keep history in right place
 setopt HIST_IGNORE_SPACE

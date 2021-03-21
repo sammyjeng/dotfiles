@@ -1,12 +1,3 @@
-<div align="center">
-    <br>
-    <a href="https://github.com/sammyjeng/dotfiles">
-        <img src="https://raw.githubusercontent.com/sammyjeng/dotfiles/master/screenshots/dot.gif">
-    </a>
-    <br>
-</div>
-
-## How to?
 - If you wish to copy and use my dotfiles, use GNU Stow to do so.
 
 - To use all of the dotfiles(not recommended), run the commands given below:
@@ -26,3 +17,6 @@
 ![Desktop](https://raw.githubusercontent.com/sammyjeng/dotfiles/master/screenshots/desktop.png)
 
 ![workflow](https://raw.githubusercontent.com/sammyjeng/dotfiles/master/screenshots/workflow.png)
+
+
+<!-- hello friend :^) here ya go flag{f7733e0093b7d281dd0a30fcf34a9634} --!>

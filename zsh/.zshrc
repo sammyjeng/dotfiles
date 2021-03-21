@@ -13,7 +13,6 @@ function git_branch_name()
   fi
 }
 
-# damn cool prompt init mate?
 PS1='%B%F{cyan}.%b%F{cyan}-%B%F{red}$(git_branch_name)%B%F{black}(%B%F{green}%~%B%F{black})%b%F{cyan}%B%F{black}(%b%F{cyan}%n%B%F{cyan}@%b%F{cyan}%m%B%F{black})%b%F{cyan}
 %}%B%F{cyan}\`-%b%F{cyan}-%b%F{red}❯%B%F{white}%B%F{white}%(!.#.❯) %b%f%k'
 

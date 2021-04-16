@@ -32,16 +32,21 @@ noremap <Leader>w :call TrimWhitespace()<CR>
 
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'andreypopp/vim-colors-plain'
-Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 call plug#end()
 
-colorscheme plain 
-
+set background=dark
 set t_Co=256
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+colorscheme spaceduck
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'jellybeans'

@@ -36,14 +36,15 @@ Plug 'fisadev/dragvisuals.vim'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-sneak'
+Plug 'sheerun/vim-polyglot'
 " colorschemes
 Plug 'owickstrom/vim-colors-paramount'
 Plug 'whatyouhide/vim-gotham'
 Plug 'fxn/vim-monochrome'
-Plug 'lurst/austere.vim'
-Plug 'andreypopp/vim-colors-plain'
 Plug 'ajh17/spacegray.vim'
 Plug 'wesgibbs/vim-irblack'
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+
 call plug#end()
 
 " allow plugins by file type (required for plugins!)
@@ -88,7 +89,14 @@ highlight OverLength ctermfg=green
 highlight colorcolumn  ctermbg=gray ctermfg=white
 match OverLength /\%81v.\+/
 set background=dark
-colorscheme plain
+set t_Co=256
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+colorscheme spaceduck
 
 " TOhtml
 let g:html_number_lines = 0
@@ -210,4 +218,4 @@ map <Leader>G :Goyo <CR>
 fun! Based()
   :%! xargs base64 -d
 endfun
-noremap <Leader>n :call Based()<CR>
+noremap <Leader>b :call Based()<CR>

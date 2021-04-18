@@ -38,7 +38,7 @@ install audacity
 install nmap
 # install steghide
 install exiftool
-install zeal #offline docs 
+install zeal #offline docs
 
 # manual installs list
 # github "owasp zap"

@@ -6,7 +6,6 @@ set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
 noremap , :
 let mapleader = "\<Space>"
 syntax on
-set expandtab
 set bg=dark
 set noswapfile
 set hlsearch

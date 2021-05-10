@@ -68,14 +68,10 @@ set ru sc hls is ic scs ai ts=4 sw=4 sts=4 list lbr nu smd ls=2 so=1 cul
 set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
 set clipboard^=unnamed,unnamedplus
 set smartcase
-set ignorecase
 set noswapfile
 set mouse=a
 set termguicolors
 set bg=dark
-set softtabstop=4
-set shiftwidth=4
-set showmode
 set modeline
 set title
 set colorcolumn=80

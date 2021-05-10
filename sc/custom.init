@@ -1,13 +1,14 @@
+set encoding=utf-8
+set ru sc hls is ic scs ai ts=4 sw=4 sts=4 list lbr nu smd ls=2 so=1 cul
+set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
+
+
 noremap , :
 let mapleader = "\<Space>"
 syntax on
-set tabstop=2
-set shiftwidth=2
 set expandtab
 set bg=dark
 set noswapfile
-set ai
-set nu rnu
 set hlsearch
 set ruler
 set smartcase
@@ -22,6 +23,7 @@ set mouse=a
 
 vmap < <gv
 vmap > >gv
+
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

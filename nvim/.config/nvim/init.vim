@@ -50,6 +50,7 @@ call plug#end()
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
+syntax enable
 
 " --------------Python syntax check----------------------------------
 let g:neomake_python_enabled_makers = ['pylint']
@@ -63,6 +64,8 @@ let mapleader =  "\<Space>"
 " map , :
 nnoremap , :
 
+set ru sc hls is ic scs ai ts=4 sw=4 sts=4 list lbr nu smd ls=2 so=1 cul
+set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
 set clipboard^=unnamed,unnamedplus
 set smartcase
 set ignorecase
@@ -70,17 +73,13 @@ set noswapfile
 set mouse=a
 set termguicolors
 set bg=dark
-set expandtab
-set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set showmode
 set modeline
-set ruler
 set title
 set colorcolumn=80
 set nowrap
-set nu rnu
 set scrolloff=3
 vmap < <gv
 vmap > >gv

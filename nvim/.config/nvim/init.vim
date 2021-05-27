@@ -5,8 +5,8 @@
 " let vim_plug_just_installed = 0
 " let vim_plug_path = expand('~/.local/share/nvim/site/autoload/plug.vim')
 " if !filereadable(vim_plug_path)
-"     echo "Installing Vim-plug..."
-"     echo ""
+"     echo 'Installing Vim-plug...'
+"     echo ' '
 "     silent !mkdir -p ~/.vim/autoload
 "     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "     let vim_plug_just_installed = 1
@@ -22,7 +22,6 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 
 Plug 'neomake/neomake'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ervandew/supertab'
 Plug 'tmhedberg/SimpylFold'
 Plug 'tell-k/vim-autopep8'
 Plug 'scrooloose/nerdtree'
@@ -30,7 +29,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'davidhalter/jedi-vim'
 Plug 'mhinz/vim-signify'
 Plug 'fisadev/dragvisuals.vim'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -38,7 +36,6 @@ Plug 'scrooloose/syntastic'
 Plug 'justinmk/vim-sneak'
 Plug 'sheerun/vim-polyglot'
 " colorschemes
-Plug 'owickstrom/vim-colors-paramount'
 Plug 'whatyouhide/vim-gotham'
 Plug 'fxn/vim-monochrome'
 Plug 'ajh17/spacegray.vim'
@@ -64,8 +61,11 @@ let mapleader =  "\<Space>"
 " map , :
 nnoremap , :
 
-set ru sc hls is ic scs ai ts=4 sw=4 sts=4 list lbr nu smd ls=2 so=1 cul
-set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
+set ru sc hls is ic scs ai ts=4 list lbr nu smd ls=2 so=1 cul noet
+set showbreak=↪\
+set listchars=tab:¦-,nbsp:•,trail:•,extends:▶,precedes:◀
+hi NonText ctermfg=16 guifg=#4a4a59
+hi SpecialKey ctermfg=16 guifg=#4a4a59
 set clipboard^=unnamed,unnamedplus
 set smartcase
 set noswapfile
@@ -92,7 +92,6 @@ if exists('+termguicolors')
   set termguicolors
 endif
 colorscheme spaceduck
-
 " TOhtml
 let g:html_number_lines = 0
 let g:html_use_encoding = "UTF-8"
@@ -145,13 +144,6 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-
-" --------------------------- Jedi-vim ------------------------------
-let g:jedi#goto_command = ',d'
-let g:jedi#usages_command = ',o'
-let g:jedi#goto_assignments_command = ',a'
-nmap ,D :tab split<CR>:call jedi#goto()<CR>
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 " set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set t_Co=256
@@ -214,3 +206,10 @@ fun! Based()
   :%! xargs base64 -d
 endfun
 noremap <Leader>b :call Based()<CR>
+
+fun! ST()
+	:set noet
+	:set ts=4
+	:%retab!
+endfun
+noremap <Leader>t :call ST()<CR>

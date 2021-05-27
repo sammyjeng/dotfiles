@@ -1,7 +1,10 @@
 set encoding=utf-8
-set ru sc hls is ic scs ai ts=4 sw=4 sts=4 list lbr nu smd ls=2 so=1 cul
-set listchars=tab:»\ ,trail:␣,extends:▶,precedes:◀
-
+set ru sc hls is ic scs ai ts=4 list lbr nu smd ls=2 so=1 cul noet
+"set listchars=tab:¦_,extends:▶,precedes:◀,trail:\·
+set showbreak=↪\ 
+set listchars=tab:¦-,nbsp:•,trail:•,extends:⟩,precedes:⟨
+hi NonText ctermfg=16 guifg=#4a4a59
+hi SpecialKey ctermfg=16 guifg=#4a4a59
 
 noremap , :
 let mapleader = "\<Space>"
@@ -25,9 +28,9 @@ vmap > >gv
 
 
 fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
+	let l:save = winsaveview()
+	keeppatterns %s/\s\+$//e
+	call winrestview(l:save)
 endfun
 noremap <Leader>w :call TrimWhitespace()<CR>
 
@@ -36,6 +39,7 @@ Plug 'andreypopp/vim-colors-plain'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'camgunz/amber'
 call plug#end()
 
 set background=dark
@@ -56,3 +60,14 @@ fun! Openfile()
   :Vexplore
 endfun
 noremap <Leader>n :call Openfile()<CR>
+
+fun! ST()
+	:set noet ts=4
+	:%retab!
+endfun
+noremap <Leader>t :call ST()<CR>
+
+fun! SAVE()
+	:w	
+endfun
+noremap <Leader>s :call SAVE()<CR>

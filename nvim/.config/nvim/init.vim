@@ -5,84 +5,81 @@
 " let vim_plug_just_installed = 0
 " let vim_plug_path = expand('~/.local/share/nvim/site/autoload/plug.vim')
 " if !filereadable(vim_plug_path)
-"     echo 'Installing Vim-plug...'
-"     echo ' '
-"     silent !mkdir -p ~/.vim/autoload
-"     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"     let vim_plug_just_installed = 1
+"	  echo 'Installing Vim-plug...'
+"	  echo ' '
+"	  silent !mkdir -p ~/.vim/autoload
+"	  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"	  let vim_plug_just_installed = 1
 " endif
 "
 "  manually load vim-plug the first time
 " if vim_plug_just_installed
-"     :execute 'source '.fnameescape(vim_plug_path)
+"	  :execute 'source '.fnameescape(vim_plug_path)
 " endif
+
 
 " ==================== Active plugins ===============================
 call plug#begin('~/.local/share/nvim/site/plugged')
-
-Plug 'neomake/neomake'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tmhedberg/SimpylFold'
-Plug 'tell-k/vim-autopep8'
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-signify'
-Plug 'fisadev/dragvisuals.vim'
+" Go-lang stuff
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mattn/vim-goimports'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'scrooloose/syntastic'
-Plug 'justinmk/vim-sneak'
 Plug 'sheerun/vim-polyglot'
 " colorschemes
 Plug 'whatyouhide/vim-gotham'
-Plug 'fxn/vim-monochrome'
-Plug 'ajh17/spacegray.vim'
 Plug 'wesgibbs/vim-irblack'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'whatyouhide/vim-gotham'
 call plug#end()
 
-" allow plugins by file type (required for plugins!)
+set encoding=utf-8
+set list
+set showbreak=↪\
+set listchars=tab:\¦\ ,nbsp:•,trail:•,extends:▶,precedes:◀
+hi NonText ctermfg=16 guifg=#4a4a59
+hi SpecialKey ctermfg=16 guifg=#4a4a59
 filetype plugin on
 filetype indent on
 syntax enable
-
-" --------------Python syntax check----------------------------------
-let g:neomake_python_enabled_makers = ['pylint']
-call neomake#configure#automake('nrwi', 500)
-
-" vim-sneak
-let g:sneak#label = 1
-
-" map leader key to <Space>
-let mapleader =  "\<Space>"
-" map , :
-nnoremap , :
-
-set ru sc hls is ic scs ai ts=4 list lbr nu smd ls=2 so=1 cul noet
-set showbreak=↪\
-set listchars=tab:¦-,nbsp:•,trail:•,extends:▶,precedes:◀
-hi NonText ctermfg=16 guifg=#4a4a59
-hi SpecialKey ctermfg=16 guifg=#4a4a59
-set clipboard^=unnamed,unnamedplus
-set smartcase
-set noswapfile
-set mouse=a
-set termguicolors
+noremap , :
+let mapleader = "\<Space>"
+syntax on
 set bg=dark
+set noswapfile
+set hlsearch
+set ruler
+set smartcase
+set clipboard+=unnamedplus
+set termguicolors
+set showmode
 set modeline
 set title
-set colorcolumn=80
 set nowrap
-set scrolloff=3
+highlight Comment ctermfg=yellow
+highlight showmode ctermfg=black
+set mouse=a
+
 vmap < <gv
 vmap > >gv
 
-highlight OverLength ctermfg=green
-highlight colorcolumn  ctermbg=gray ctermfg=white
-match OverLength /\%81v.\+/
+
+let g:goimports = 1
+let g:go_version_warning = 0
+let g:go_fmt_command = "goimports"
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+let g:go_disable_autoinstall = 1
+
+set autoindent
+set dir=/tmp
+set backupdir=/tmp
+
 set background=dark
 set t_Co=256
 
@@ -91,7 +88,13 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-colorscheme spaceduck
+
+colorscheme ir_black
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'jellybeans'
+
+
 " TOhtml
 let g:html_number_lines = 0
 let g:html_use_encoding = "UTF-8"
@@ -111,8 +114,6 @@ nnoremap <leader>U :% norm zc<CR>
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
 
-" autocomplete window hide
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Comment this line to enable autocompletion preview window
 " Disabled by default because preview makes the window flicker
@@ -124,7 +125,7 @@ set wildmode=list:longest
 " ============ Plugins settings and mappings ========================
 " NERDTree
 " toggle nerdtree display
-nnoremap <Leader>q  :NERDTreeToggle<CR>
+nnoremap <Leader>q	:NERDTreeToggle<CR>
 " open nerdtree with the current file selected
 nmap <leader>f :NERDTreeFind<CR>
 " don;t show these file types
@@ -168,48 +169,20 @@ let g:instant_markdown_autoscroll = 0
 let g:instant_markdown_port = 8888
 let g:instant_markdown_python = 1
 
-" -------------Func to remove traling whiteSpaces--------------------
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-noremap <Leader>w :call TrimWhitespace()<CR>
-
-function! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-endfunction
-
-" -------------Goyo for Zen coding-----------------------------------
-
-function! s:goyo_leave()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  set showmode
-  set showcmd
-  set scrolloff=5
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-map <Leader>G :Goyo <CR>
-
-fun! Based()
-  :%! xargs base64 -d
-endfun
-noremap <Leader>b :call Based()<CR>
-
 fun! ST()
-	:set noet
-	:set ts=4
+	:set noet ts=4
 	:%retab!
 endfun
 noremap <Leader>t :call ST()<CR>
+
+fun! SAVE()
+	:w
+endfun
+noremap <Leader>s :call SAVE()<CR>
+
+fun! TrimWhitespace()
+	let l:save = winsaveview()
+	keeppatterns %s/\s\+$//e
+	call winrestview(l:save)
+endfun
+noremap <Leader>w :call TrimWhitespace()<CR>

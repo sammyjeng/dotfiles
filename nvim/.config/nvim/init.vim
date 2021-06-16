@@ -28,6 +28,7 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
 " colorschemes
 Plug 'whatyouhide/vim-gotham'
+Plug 'jaredgorski/spacecamp'
 Plug 'wesgibbs/vim-irblack'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs'
@@ -36,10 +37,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'whatyouhide/vim-gotham'
 call plug#end()
 
-set encoding=utf-8
-set list
-set showbreak=↪\
-set listchars=tab:\¦\ ,nbsp:•,trail:•,extends:▶,precedes:◀
 hi NonText ctermfg=16 guifg=#4a4a59
 hi SpecialKey ctermfg=16 guifg=#4a4a59
 filetype plugin on
@@ -48,8 +45,13 @@ syntax enable
 noremap , :
 let mapleader = "\<Space>"
 syntax on
+set encoding=utf-8
+set list
+set showbreak=↪\
+set listchars=tab:\¦\ ,nbsp:•,trail:•,extends:▶,precedes:◀
 set bg=dark
 set noswapfile
+set rnu nu
 set hlsearch
 set ruler
 set smartcase
@@ -59,9 +61,14 @@ set showmode
 set modeline
 set title
 set nowrap
+set autoindent
+set dir=/tmp
+set backupdir=/tmp
+set background=dark
+set mouse=a
+set t_Co=256
 highlight Comment ctermfg=yellow
 highlight showmode ctermfg=black
-set mouse=a
 
 vmap < <gv
 vmap > >gv
@@ -76,23 +83,15 @@ au FileType go set softtabstop=4
 au FileType go set tabstop=4
 let g:go_disable_autoinstall = 1
 
-set autoindent
-set dir=/tmp
-set backupdir=/tmp
-
-set background=dark
-set t_Co=256
+colorscheme gotham256
+let g:airline_theme = "base16_embers"
+let g:airline#extensions#tabline#enabled = 1
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-
-colorscheme ir_black
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'jellybeans'
 
 
 " TOhtml
@@ -146,12 +145,6 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 
-" set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-set t_Co=256
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'jellybeans'
-" let g:airline_theme='cool'
 
 " supertab settings
 set completeopt=longest,menuone

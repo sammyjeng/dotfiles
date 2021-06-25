@@ -20,6 +20,8 @@
 
 " ==================== Active plugins ===============================
 call plug#begin('~/.local/share/nvim/site/plugged')
+
+Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdtree'
 " Go-lang stuff
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -27,14 +29,12 @@ Plug 'mattn/vim-goimports'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
 " colorschemes
-Plug 'whatyouhide/vim-gotham'
-Plug 'jaredgorski/spacecamp'
 Plug 'wesgibbs/vim-irblack'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'whatyouhide/vim-gotham'
+
 call plug#end()
 
 hi NonText ctermfg=16 guifg=#4a4a59
@@ -46,15 +46,18 @@ noremap , :
 let mapleader = "\<Space>"
 syntax on
 set encoding=utf-8
-set list
+set hidden
+set backspace=eol,start,indent
 set showbreak=↪\
-set listchars=tab:\¦\ ,nbsp:•,trail:•,extends:▶,precedes:◀
 set bg=dark
 set noswapfile
 set rnu nu
 set hlsearch
+set gdefault
+set showmatch
 set ruler
 set smartcase
+set ignorecase
 set clipboard+=unnamedplus
 set termguicolors
 set showmode
@@ -77,14 +80,25 @@ vmap > >gv
 let g:goimports = 1
 let g:go_version_warning = 0
 let g:go_fmt_command = "goimports"
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
+au FileType go set
+      \  noexpandtab
+      \  shiftwidth=4
+      \  softtabstop=4
+      \  tabstop=4
+      \  nolist
 let g:go_disable_autoinstall = 1
 
-colorscheme gotham256
-let g:airline_theme = "base16_embers"
+au Filetype python set
+     \ list
+     \ listchars=tab:\¦\ ,nbsp:•,trail:•,extends:▶,precedes:◀
+     \ tabstop=4
+     \ softtabstop=4
+     \ shiftwidth=4
+     \ textwidth=79
+     \ noet ts=4
+
+colorscheme gotham
+let g:airline_theme = "gotham"
 let g:airline#extensions#tabline#enabled = 1
 
 if exists('+termguicolors')
@@ -99,7 +113,7 @@ let g:html_number_lines = 0
 let g:html_use_encoding = "UTF-8"
 
 " tab navigation mappings
-nnoremap <leader>t :tabnew<Space>
+nnoremap <leader>n :tabnew<Space>
 nnoremap <leader>k :tabnext<CR>
 nnoremap <leader>j :tabprev<CR>
 nnoremap <leader>h :tabfirst<CR>
@@ -112,6 +126,9 @@ nnoremap <leader>U :% norm zc<CR>
 " Add spellchecks for md files
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
+"
+" Syntax highlighting for asm
+autocmd BufRead,BufNewFile *.asm set ft=nasm
 
 
 " Comment this line to enable autocompletion preview window
@@ -130,25 +147,6 @@ nmap <leader>f :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
-" ------------------------- Syntastic -------------------------------
-
-" show list of errors and warnings on the current file
-nmap <leader>e :Errors<CR>
-" check also when just opened the file
-let g:syntastic_check_on_open = 1
-" don't put icons on the sign column (it hides the vcs status icons of signify)
-let g:syntastic_enable_signs = 1
-" custom icons (enable them if you use a patched font, and enable the previous
-" setting)
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-
-
-" supertab settings
-set completeopt=longest,menuone
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " ----------------------Instant view of MD files---------------------
 let g:instant_markdown_slow = 0
@@ -161,12 +159,6 @@ let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_autoscroll = 0
 let g:instant_markdown_port = 8888
 let g:instant_markdown_python = 1
-
-fun! ST()
-	:set noet ts=4
-	:%retab!
-endfun
-noremap <Leader>t :call ST()<CR>
 
 fun! SAVE()
 	:w

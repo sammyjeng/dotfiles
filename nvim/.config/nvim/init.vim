@@ -26,14 +26,17 @@ Plug 'scrooloose/nerdtree'
 " Go-lang stuff
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mattn/vim-goimports'
+" markdown, synatax and autopairs
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
-" colorschemes
-Plug 'wesgibbs/vim-irblack'
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs'
+" colorschemes
+Plug 'andreypopp/vim-colors-plain'
+Plug 'aditya-azad/candle-grey'
+"Plug 'chriskempson/base16-vim'
+Plug 'danishprakash/vim-yami'
 Plug 'vim-airline/vim-airline'
-Plug 'whatyouhide/vim-gotham'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -96,9 +99,10 @@ au Filetype python set
      \ shiftwidth=4
      \ textwidth=79
      \ noet ts=4
+autocmd Filetype python :ALEDisable
 
-colorscheme gotham
-let g:airline_theme = "gotham"
+colorscheme yami
+let g:airline_theme = "atomic"
 let g:airline#extensions#tabline#enabled = 1
 
 if exists('+termguicolors')

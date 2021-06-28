@@ -21,6 +21,7 @@
 " ==================== Active plugins ===============================
 call plug#begin('~/.local/share/nvim/site/plugged')
 
+Plug 'rust-lang/rust.vim'
 Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdtree'
 " Go-lang stuff
@@ -40,8 +41,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-hi NonText ctermfg=16 guifg=#4a4a59
-hi SpecialKey ctermfg=16 guifg=#4a4a59
 filetype plugin on
 filetype indent on
 syntax enable
@@ -78,6 +77,22 @@ highlight showmode ctermfg=black
 
 vmap < <gv
 vmap > >gv
+
+
+" ALE
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
+let g:rustfmt_autosave = 1
+let g:ale_rust_analyzer_executable = 1
+let g:ale_linters = {'rust': ['rustc', 'rls']}
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'rust': ['rustfmt'],
+\}
 
 
 let g:goimports = 1

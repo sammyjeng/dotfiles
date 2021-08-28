@@ -32,9 +32,7 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 " colorschemes
-Plug 'andreypopp/vim-colors-plain'
-Plug 'aditya-azad/candle-grey'
-"Plug 'chriskempson/base16-vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'danishprakash/vim-yami'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -48,6 +46,7 @@ noremap , :
 let mapleader = "\<Space>"
 syntax on
 set encoding=utf-8
+set wrap
 set hidden
 set backspace=eol,start,indent
 set showbreak=↪\
@@ -65,7 +64,6 @@ set termguicolors
 set showmode
 set modeline
 set title
-set nowrap
 set autoindent
 set dir=/tmp
 set backupdir=/tmp
@@ -113,10 +111,12 @@ au Filetype python set
      \ softtabstop=4
      \ shiftwidth=4
      \ textwidth=79
-     \ noet ts=4
+     \ et ts=4
 autocmd Filetype python :ALEDisable
 
-colorscheme yami
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'ocean'
+colorscheme material
 let g:airline_theme = "atomic"
 let g:airline#extensions#tabline#enabled = 1
 

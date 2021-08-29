@@ -179,14 +179,9 @@ let g:instant_markdown_autoscroll = 0
 let g:instant_markdown_port = 8888
 let g:instant_markdown_python = 1
 
-fun! SAVE()
-	:w
-endfun
-noremap <Leader>s :call SAVE()<CR>
-
-fun! TrimWhitespace()
+fun! TrimSave()
 	let l:save = winsaveview()
 	keeppatterns %s/\s\+$//e
 	call winrestview(l:save)
 endfun
-noremap <Leader>w :call TrimWhitespace()<CR>
+noremap <Leader>s :call TrimSave()<CR>

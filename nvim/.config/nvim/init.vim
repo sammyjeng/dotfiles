@@ -27,7 +27,8 @@ Plug 'scrooloose/nerdtree'
 " Go-lang stuff
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mattn/vim-goimports'
-" markdown, synatax and autopairs
+" LaTex, markdown, synatax and autopairs
+Plug 'lervag/vimtex'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
@@ -36,7 +37,7 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'danishprakash/vim-yami'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'fcpg/vim-fahrenheit'
 call plug#end()
 
 filetype plugin on
@@ -44,6 +45,7 @@ filetype indent on
 syntax enable
 noremap , :
 let mapleader = "\<Space>"
+let maplocalleader = ";"
 syntax on
 set encoding=utf-8
 set wrap
@@ -114,17 +116,22 @@ au Filetype python set
      \ et ts=4
 autocmd Filetype python :ALEDisable
 
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'ocean'
-colorscheme material
-let g:airline_theme = "atomic"
-let g:airline#extensions#tabline#enabled = 1
+augroup myBetterColors
+  au!
+  autocmd ColorScheme *  hi! Number ctermfg=103
+augroup END
 
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+"let g:material_terminal_italics = 1
+"let g:material_theme_style = 'ocean'
+colorscheme fahrenheit
+let g:airline_theme = "atomic"
+"let g:airline#extensions#tabline#enabled = 1
+"
+"if exists('+termguicolors')
+"  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"  set termguicolors
+"endif
 
 
 " TOhtml
@@ -144,6 +151,7 @@ nnoremap <leader>U :% norm zc<CR>
 
 " Add spellchecks for md files
 autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.tex setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
 "
 " Syntax highlighting for asm
@@ -160,7 +168,7 @@ set wildmode=list:longest
 " ============ Plugins settings and mappings ========================
 " NERDTree
 " toggle nerdtree display
-nnoremap <Leader>q	:NERDTreeToggle<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 " open nerdtree with the current file selected
 nmap <leader>f :NERDTreeFind<CR>
 " don;t show these file types
@@ -169,7 +177,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
 " ----------------------Instant view of MD files---------------------
 let g:instant_markdown_slow = 0
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_autostart = 0
 let g:instant_markdown_open_to_the_world = 1
 let g:instant_markdown_allow_unsafe_content = 1
 let g:instant_markdown_allow_external_content = 0
@@ -179,9 +187,19 @@ let g:instant_markdown_autoscroll = 0
 let g:instant_markdown_port = 8888
 let g:instant_markdown_python = 1
 
-fun! TrimSave()
+
+" ----------------------- LaTex Config -----------------------------------
+let g:vimtex_view_method = 'zathura'
+
+fun! SAVE()
 	let l:save = winsaveview()
 	keeppatterns %s/\s\+$//e
 	call winrestview(l:save)
+	:w
 endfun
-noremap <Leader>s :call TrimSave()<CR>
+noremap <Leader>s :call SAVE()<CR>
+
+fun! QUIT()
+	:wq
+endfun
+noremap <Leader>q :call QUIT()<CR>

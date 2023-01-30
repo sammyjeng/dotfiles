@@ -1,0 +1,49 @@
+unbind C-b
+set-option -g prefix `
+set-option -g status-position top
+set-option -g history-limit 100000
+bind-key C-b send-prefix
+bind-key \\ split-window -h
+bind-key - split-window -v
+bind-key ` last-window
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..!!"
+#bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+#bind-key -Tcopy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+
+setw -g mode-keys vi
+set -sg escape-time 0
+set -g base-index 1
+set -g default-shell /bin/zsh
+set -g status-style bg=colour234,fg=white,dim
+set -g status-right-length 90
+set -g status-left-length 90
+set -g status-justify left
+set -g default-terminal "screen-256color"
+set -g mouse on
+
+setw -g aggressive-resize on
+setw -g automatic-rename on
+setw -g window-status-current-format ' #I#[fg=black bg=red]:#[bg=color250]#W#[fg=black bg=red]#F '
+setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+setw -g window-status-current-style fg=black,bg=black,italics,bold
+setw -g window-status-style fg=colour138,bg=colour235,none
+setw -g window-status-bell-style bold,fg=colour255,bg=colour1
+set -g status-right ' #[fg=colour233,bg=colour241,bold] %d:%m:%Y #[fg=colour233,bg=colour245,bold] %H:%M '
+set-window-option -g clock-mode-colour red
+
+# fix pane_current_path on new window and splits
+if-shell "test '#{$TMUX_VERS\ION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind c; bind c new-window -c "#{pane_current_path}"'
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" "unbind '\"'; bind '\"' split-window -v -c '#{pane_current_path}'"
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind v; bind v split-window -h -c "#{pane_current_path}"'
+if-shell "test '#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)'" 'unbind \%; bind \% split-window -h -c "#{pane_current_path}"'
+
+set -g pane-border-format " #P: #{pane_current_command} "

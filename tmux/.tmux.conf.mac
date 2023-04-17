@@ -7,8 +7,8 @@ bind-key \\ split-window -h
 bind-key - split-window -v
 bind-key ` last-window
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..!!"
-#bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-#bind-key -Tcopy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X copy-pipe "reattach-to-user-namespace pbcopy"
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
@@ -32,12 +32,11 @@ set -g mouse on
 
 setw -g aggressive-resize on
 setw -g automatic-rename on
-setw -g window-status-current-format ' #I#[fg=black bg=red]:#[bg=color250]#W#[fg=black bg=red]#F '
-setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
-setw -g window-status-current-style fg=black,bg=black,italics,bold
+setw -g window-status-current-format '#I:#[bg=colour166 fg=default ]#[bg=colour166 fg=color233]#W#[fg=colour50]#F'
+setw -g window-status-current-style fg=colour166,bg=default,bold
 setw -g window-status-style fg=colour138,bg=colour235,none
-setw -g window-status-bell-style bold,fg=colour255,bg=colour1
-set -g status-right ' #[fg=colour233,bg=colour241,bold] %d:%m:%Y #[fg=colour233,bg=colour245,bold] %H:%M '
+setw -g window-status-bell-style blink
+set -g status-right ' #[fg=colour233,bg=colour241,bold] %d:%m:%Y #[fg=colour233,bg=colour245,bold] %H:%M'
 set-window-option -g clock-mode-colour red
 
 # fix pane_current_path on new window and splits
